@@ -11,8 +11,8 @@ class MobileController(SingletonConfigurable):
 
 #    loop = True
 #    controll_thread = None
-    left_v = 0.0
-    right_v = 0.0
+    left_v = 0.26
+    right_v = 0.25
 #    jitter = 1.111
     max_radius = 50.0
     speed = traitlets.Float(default_value=0.0).tag(config=True)
@@ -29,7 +29,7 @@ class MobileController(SingletonConfigurable):
         
         self.speed = change['new'] if self.pass_through else self._input_disc(change['new'])
         self.controll()
-        self.robot.set_motors(self.left_v, self.right_v)
+        self.robot.set_motors(self.left_v + 0.1, self.right_v)
     
     @traitlets.observe('radius')
     def _observe_radius(self, change):
